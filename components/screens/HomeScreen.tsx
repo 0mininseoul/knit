@@ -57,9 +57,14 @@ export default function HomeScreen() {
                         </p>
                     </motion.div>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
-                    {/* Avatar */}
-                    <span className="text-2xl">👤</span>
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center overflow-hidden border border-gray-100 p-1">
+                        <img src="/logo.png" alt="KNIT Logo" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                        {/* Avatar */}
+                        <span className="text-xl">👤</span>
+                    </div>
                 </div>
             </header>
 
