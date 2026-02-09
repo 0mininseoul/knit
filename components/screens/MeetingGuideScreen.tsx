@@ -29,10 +29,10 @@ export default function MeetingGuideScreen() {
         <div className="flex flex-col h-screen bg-toss-grey-50 relative overflow-hidden">
             {/* Header */}
             <div className="px-6 pt-14 pb-4 bg-white/80 backdrop-blur-xl z-20 flex justify-between items-center sticky top-0">
-                <h1 className="text-xl font-bold text-gray-900">Meeting Guide</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Meeting Guide</h1>
                 <button
                     onClick={handleBackToHome}
-                    className="text-sm text-gray-500 font-medium px-3 py-1.5 bg-gray-100 rounded-full"
+                    className="text-base text-gray-500 font-medium px-4 py-2 bg-gray-100 rounded-full"
                 >
                     Close
                 </button>
@@ -58,11 +58,11 @@ export default function MeetingGuideScreen() {
                             📍
                         </div>
                         <div>
-                            <p className="font-bold text-gray-900 text-lg">You've Arrived!</p>
-                            <p className="text-sm text-gray-500">Gangnam Station Exit 10</p>
+                            <p className="font-bold text-gray-900 text-xl">You've Arrived!</p>
+                            <p className="text-base text-gray-500">Gangnam Station Exit 10</p>
                         </div>
                     </div>
-                    <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
+                    <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-base font-bold">
                         Online
                     </div>
                 </motion.div>
@@ -76,9 +76,9 @@ export default function MeetingGuideScreen() {
                 >
                     <div className="flex items-center gap-2 mb-4">
                         <div className="p-2 bg-blue-50 rounded-xl text-toss-blue">
-                            <MessageCircle size={20} />
+                            <MessageCircle size={24} />
                         </div>
-                        <span className="font-bold text-sm text-toss-blue uppercase tracking-wide">Conversation Starter</span>
+                        <span className="font-bold text-base text-toss-blue uppercase tracking-wide">Conversation Starter</span>
                     </div>
 
                     <AnimatePresence mode='wait'>
@@ -87,7 +87,7 @@ export default function MeetingGuideScreen() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
-                            className="text-2xl font-bold text-gray-900 leading-tight mb-8 min-h-[5rem]"
+                            className="text-4xl font-bold text-gray-900 leading-tight mb-8 min-h-[5rem]"
                         >
                             &quot;{topics[topicIndex]}&quot;
                         </motion.h2>
@@ -95,9 +95,9 @@ export default function MeetingGuideScreen() {
 
                     <button
                         onClick={handleNextTopic}
-                        className="w-full bg-toss-grey-100 py-4 rounded-2xl text-[17px] text-gray-700 font-semibold hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                        className="w-full bg-toss-grey-100 py-5 rounded-2xl text-2xl text-gray-700 font-semibold hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                     >
-                        Next Topic <ChevronRight size={20} />
+                        Next Topic <ChevronRight size={24} />
                     </button>
                 </motion.div>
 

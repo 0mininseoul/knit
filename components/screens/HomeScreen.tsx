@@ -41,25 +41,25 @@ export default function HomeScreen() {
                     <motion.h1
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="text-[26px] font-bold text-gray-900 leading-tight"
+                        className="text-4xl font-bold text-gray-900 leading-tight"
                     >
-                        Sunny Days <span className="text-2xl">☀️</span>
+                        Sunny Days <span className="text-3xl">☀️</span>
                     </motion.h1>
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="flex items-center gap-1 mt-1"
+                        className="flex items-center gap-2 mt-2"
                     >
-                        <MapPin size={14} className="text-gray-400" />
-                        <p className="text-[15px] text-gray-500 font-medium">
+                        <MapPin size={18} className="text-gray-400" />
+                        <p className="text-lg text-gray-500 font-medium">
                             {userLocation ? userLocation.address : 'Locating...'}
                         </p>
                     </motion.div>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
                     {/* Avatar */}
-                    <span className="text-xl">👤</span>
+                    <span className="text-2xl">👤</span>
                 </div>
             </header>
 
@@ -81,10 +81,10 @@ export default function HomeScreen() {
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                     >
-                        <h2 className="text-[22px] font-bold text-gray-900 mb-2">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-2">
                             {isCheckedIn ? "You're all set!" : "How are you today?"}
                         </h2>
-                        <p className="text-gray-500 text-[15px] mb-8">
+                        <p className="text-gray-500 text-xl mb-8">
                             {isCheckedIn ? "Waiting for others to join..." : "Check-in to let your group know."}
                         </p>
 
@@ -93,22 +93,22 @@ export default function HomeScreen() {
                             disabled={isCheckedIn}
                             whileTap={{ scale: 0.95 }}
                             whileHover={{ scale: 1.05 }}
-                            className={`w-28 h-28 rounded-3xl flex items-center justify-center shadow-lg transition-all duration-500 ${isCheckedIn
-                                    ? 'bg-green-500 text-white shadow-green-200'
-                                    : 'bg-toss-blue text-white shadow-blue-200'
+                            className={`w-32 h-32 rounded-3xl flex items-center justify-center shadow-lg transition-all duration-500 ${isCheckedIn
+                                ? 'bg-green-500 text-white shadow-green-200'
+                                : 'bg-toss-blue text-white shadow-blue-200'
                                 }`}
                         >
                             {isCheckedIn ? (
                                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
-                                    <Check size={48} strokeWidth={3} />
+                                    <Check size={64} strokeWidth={3} />
                                 </motion.div>
                             ) : (
-                                <Smile size={48} strokeWidth={2} />
+                                <Smile size={64} strokeWidth={2} />
                             )}
                         </motion.button>
 
                         {!isCheckedIn && (
-                            <p className="text-toss-blue text-sm font-semibold mt-4 animate-pulse">
+                            <p className="text-toss-blue text-lg font-semibold mt-6 animate-pulse">
                                 Tap to Check-in
                             </p>
                         )}
@@ -117,32 +117,32 @@ export default function HomeScreen() {
 
                 {/* Group Status */}
                 <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-3 px-1">Group Members</h3>
-                    <div className="space-y-3">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 px-1">Group Members</h3>
+                    <div className="space-y-4">
                         {groupMembers.map((member, idx) => (
                             <motion.div
                                 key={member.id}
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex items-center justify-between"
+                                className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex items-center justify-between"
                             >
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-5">
                                     <div className="relative">
-                                        <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-2xl">
+                                        <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center text-3xl">
                                             {idx === 0 ? '👴🏻' : '👵🏻'}
                                         </div>
-                                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                                            <div className="w-3 h-3 bg-green-500 rounded-full border border-white" />
+                                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                            <div className="w-4 h-4 bg-green-500 rounded-full border border-white" />
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="font-bold text-lg text-gray-900">{member.name}</p>
-                                        <p className="text-sm text-gray-400 font-medium">Online • {member.lastActive}</p>
+                                        <p className="font-bold text-xl text-gray-900">{member.name}</p>
+                                        <p className="text-base text-gray-400 font-medium">Online • {member.lastActive}</p>
                                     </div>
                                 </div>
-                                <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
-                                    <Check size={20} />
+                                <button className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
+                                    <Check size={24} />
                                 </button>
                             </motion.div>
                         ))}

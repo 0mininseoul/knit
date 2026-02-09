@@ -48,7 +48,7 @@ export default function AnalysisScreen() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-2xl font-semibold text-gray-700 leading-relaxed"
+                className="text-4xl font-semibold text-gray-700 leading-relaxed"
             >
                 {loadingText}
             </motion.h2>

@@ -66,10 +66,10 @@ export default function OnboardingScreen() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        className="space-y-4"
+                        className="space-y-6"
                     >
-                        <h2 className="text-2xl font-bold text-[#2884C1]">AI Assistant</h2>
-                        <p className="text-xl text-gray-700 leading-relaxed">
+                        <h2 className="text-3xl font-bold text-[#2884C1]">AI Assistant</h2>
+                        <p className="text-2xl text-gray-700 leading-relaxed">
                             &quot;Hello! I&apos;m here to help you find friends. Tell me what you enjoy doing?&quot;
                         </p>
                         <VoiceVisualizer isActive={true} color="#2884C1" />
@@ -83,7 +83,7 @@ export default function OnboardingScreen() {
                         animate={{ opacity: 1 }}
                         className="space-y-4"
                     >
-                        <h2 className="text-2xl font-bold text-green-600">Listening...</h2>
+                        <h2 className="text-3xl font-bold text-green-600">Listening...</h2>
                         <div className="p-4 bg-green-50 rounded-full inline-block">
                             <Mic className="w-10 h-10 text-green-600" />
                         </div>
@@ -98,8 +98,8 @@ export default function OnboardingScreen() {
                         animate={{ opacity: 1 }}
                         className="space-y-4"
                     >
-                        <h2 className="text-2xl font-bold text-gray-500">Creating Profile...</h2>
-                        <p className="text-xl font-medium text-gray-800">&quot;{transcript}&quot;</p>
+                        <h2 className="text-3xl font-bold text-gray-500">Creating Profile...</h2>
+                        <p className="text-2xl font-medium text-gray-800">&quot;{transcript}&quot;</p>
                         <div className="animate-spin rounded-full h-10 w-10 border-b-4 border-[#2884C1] mx-auto" />
                     </motion.div>
                 )}
@@ -112,7 +112,7 @@ export default function OnboardingScreen() {
                         className="space-y-4"
                     >
                         <CheckCircle2 className="w-24 h-24 text-green-500 mx-auto" />
-                        <h2 className="text-3xl font-bold text-gray-800">Profile Ready!</h2>
+                        <h2 className="text-4xl font-bold text-gray-800">Profile Ready!</h2>
                     </motion.div>
                 )}
             </div>

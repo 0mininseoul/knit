@@ -17,10 +17,10 @@ export default function MatchResultScreen() {
                 animate={{ y: 0, opacity: 1 }}
                 className="text-center space-y-2"
             >
-                <div className="inline-block bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full text-lg font-bold mb-2">
+                <div className="inline-block bg-yellow-100 text-yellow-800 px-5 py-2 rounded-full text-xl font-bold mb-3">
                     ✨ 98% Compatibility
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 leading-tight">We found your<br />Knitting Circle!</h1>
+                <h1 className="text-4xl font-bold text-gray-900 leading-tight">We found your<br />Knitting Circle!</h1>
             </motion.div>
 
             {/* Triangle Layout for 3 People */}
@@ -35,7 +35,7 @@ export default function MatchResultScreen() {
                     <div className="w-24 h-24 rounded-full bg-blue-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
                         <User className="w-12 h-12 text-[#2884C1]" />
                     </div>
-                    <span className="mt-2 font-bold text-lg text-gray-800">{userProfile.name}</span>
+                    <span className="mt-2 font-bold text-xl text-gray-800">{userProfile.name}</span>
                 </motion.div>
 
                 {/* Member 1 (Bottom Left) */}
@@ -48,8 +48,8 @@ export default function MatchResultScreen() {
                     <div className="w-20 h-20 rounded-full bg-orange-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
                         <span className="text-3xl">👴🏻</span>
                     </div>
-                    <span className="mt-2 font-bold text-gray-700">{groupMembers[0].name}</span>
-                    <span className="text-sm font-medium text-gray-500">Fishing, Travel</span>
+                    <span className="mt-2 font-bold text-xl text-gray-700">{groupMembers[0].name}</span>
+                    <span className="text-base font-medium text-gray-500">Fishing, Travel</span>
                 </motion.div>
 
                 {/* Member 2 (Bottom Right) */}
@@ -62,8 +62,8 @@ export default function MatchResultScreen() {
                     <div className="w-20 h-20 rounded-full bg-green-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
                         <span className="text-3xl">👵🏻</span>
                     </div>
-                    <span className="mt-2 font-bold text-gray-700">{groupMembers[1].name}</span>
-                    <span className="text-sm font-medium text-gray-500">Cooking, Garden</span>
+                    <span className="mt-2 font-bold text-xl text-gray-700">{groupMembers[1].name}</span>
+                    <span className="text-base font-medium text-gray-500">Cooking, Garden</span>
                 </motion.div>
 
                 {/* Connection Lines (SVG) - Animated */}
@@ -110,8 +110,8 @@ export default function MatchResultScreen() {
                         <MapPin className="w-5 h-5 text-red-500" />
                     </div>
                     <div>
-                        <h3 className="font-bold text-gray-800 text-sm">Meeting Point</h3>
-                        <p className="text-xs text-gray-500 font-medium">Tokyo Innovation Base</p>
+                        <h3 className="font-bold text-gray-800 text-lg">Meeting Point</h3>
+                        <p className="text-base text-gray-500 font-medium">Tokyo Innovation Base</p>
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@ export default function MatchResultScreen() {
                 </div>
 
                 <div className="p-4 bg-white">
-                    <p className="text-xs text-gray-500 leading-relaxed">
+                    <p className="text-base text-gray-500 leading-relaxed">
                         3 Chome-8-3 Marunouchi, Chiyoda City, Tokyo 100-0005
                     </p>
                 </div>
@@ -139,7 +139,7 @@ export default function MatchResultScreen() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1.5 }}
                 onClick={() => setCurrentScreen('home')}
-                className="w-full max-w-xs bg-[#2884C1] text-white py-4 rounded-xl text-2xl font-bold shadow-blue-200 shadow-xl active:scale-95 transition-transform flex items-center justify-center gap-2"
+                className="w-full max-w-xs bg-[#2884C1] text-white py-5 rounded-xl text-3xl font-bold shadow-blue-200 shadow-xl active:scale-95 transition-transform flex items-center justify-center gap-2"
             >
                 <Users className="w-8 h-8" />
                 Start Connecting
