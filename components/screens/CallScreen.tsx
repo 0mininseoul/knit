@@ -144,13 +144,7 @@ export default function CallScreen() {
             </motion.div>
 
             {/* Floating Controls */}
-            <div className="absolute top-[45%] left-0 right-0 flex justify-center gap-6 z-30 pointer-events-none">
-                {/*  Push down slightly if chat is open, or keep centered? 
-                      Let's fix it to bottom area if chat is closed, or middle if chat is open.
-                      Actually, simpler to have it at bottom fixed if chat is hidden.
-                 */}
-            </div>
-            <div className={`absolute left-0 right-0 flex justify-center gap-4 z-40 transition-all duration-500 ${showChat ? 'bottom-[42%]' : 'bottom-28'}`}>
+            <div className={`absolute left-0 right-0 flex justify-center gap-4 z-40 transition-all duration-500 ${showChat ? 'bottom-[45%]' : 'bottom-24'}`}>
                 <div className="bg-white/90 backdrop-blur-xl rounded-full px-6 py-3 flex gap-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50">
                     <button
                         onClick={() => setIsMuted(!isMuted)}
@@ -191,10 +185,10 @@ export default function CallScreen() {
                             {messages.map((msg) => (
                                 <div key={msg.id} className={`flex ${msg.isMe ? 'justify-end' : 'justify-start'}`}>
                                     <div className={`max-w-[85%] px-4 py-2.5 rounded-[20px] text-[15px] leading-relaxed ${msg.type === 'ai'
-                                            ? 'bg-blue-50 text-toss-blue border border-blue-100 rounded-tl-none'
-                                            : (msg.isMe
-                                                ? 'bg-toss-blue text-white rounded-tr-none'
-                                                : 'bg-gray-100 text-gray-800 rounded-tl-none')
+                                        ? 'bg-blue-50 text-toss-blue border border-blue-100 rounded-tl-none'
+                                        : (msg.isMe
+                                            ? 'bg-toss-blue text-white rounded-tr-none'
+                                            : 'bg-gray-100 text-gray-800 rounded-tl-none')
                                         }`}>
                                         {!msg.isMe && <p className="text-[11px] opacity-70 mb-1 font-semibold">{msg.sender}</p>}
                                         {msg.text}

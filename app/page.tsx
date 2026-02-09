@@ -16,7 +16,7 @@ export default function Home() {
   const activeTab = useAppStore((state) => state.activeTab);
 
   return (
-    <main className="max-w-md mx-auto bg-toss-grey-50 min-h-screen shadow-xl overflow-hidden relative">
+    <main className="max-w-md mx-auto bg-toss-grey-50 h-[100dvh] shadow-xl overflow-hidden relative">
       {currentScreen === 'splash' && <SplashScreen />}
       {currentScreen === 'onboarding' && <OnboardingScreen />}
       {currentScreen === 'analysis' && <AnalysisScreen />}
