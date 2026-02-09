@@ -52,8 +52,8 @@ export default function OnboardingScreen() {
         <div className="flex flex-col items-center justify-between h-screen bg-white p-6 relative overflow-hidden">
             {/* Top Graphic */}
             <div className="w-full flex justify-center mt-12">
-                <div className="w-32 h-32 rounded-full bg-blue-50 flex items-center justify-center border-4 border-[#2884C1]/20 p-4">
-                    <img src="/logo.png" alt="KNIT Logo" className="w-full h-full object-contain" />
+                <div className="w-40 h-40 rounded-full bg-blue-50 flex items-center justify-center border-4 border-[#2884C1]/10 p-2 overflow-hidden">
+                    <img src="/logo.png" alt="KNIT Logo" className="w-full h-full object-contain scale-125" />
                 </div>
             </div>
 
