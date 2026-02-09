@@ -23,12 +23,12 @@ export default function SplashScreen() {
                 transition={{ duration: 1, ease: 'easeOut' }}
                 className="text-center"
             >
-                {/* Actual Logo */}
-                <div className="w-40 h-40 mx-auto mb-6 flex items-center justify-center">
+                {/* Actual Logo - Increased size for better visibility */}
+                <div className="w-56 h-56 mx-auto mb-4 flex items-center justify-center">
                     <img
                         src="/logo.png"
                         alt="KNIT Logo"
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain scale-125"
                     />
                 </div>
 
