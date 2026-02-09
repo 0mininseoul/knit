@@ -1,10 +1,14 @@
 import { create } from 'zustand';
 
-type Screen = 'splash' | 'onboarding' | 'analysis' | 'match' | 'home' | 'call' | 'meeting';
+type Screen = 'splash' | 'onboarding' | 'analysis' | 'match' | 'home' | 'call' | 'meeting' | 'settings';
+type Tab = 'home' | 'call' | 'settings';
 
 interface AppState {
   currentScreen: Screen;
   setCurrentScreen: (screen: Screen) => void;
+
+  activeTab: Tab;
+  setActiveTab: (tab: Tab) => void;
 
   // Fake User Data
   userProfile: {
@@ -35,6 +39,9 @@ interface AppState {
 export const useAppStore = create<AppState>((set) => ({
   currentScreen: 'splash',
   setCurrentScreen: (screen) => set({ currentScreen: screen }),
+
+  activeTab: 'home',
+  setActiveTab: (tab) => set({ activeTab: tab }),
 
   userProfile: {
     name: 'Me',

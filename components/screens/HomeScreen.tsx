@@ -1,150 +1,179 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '@/store/useAppStore';
-import { Check, User } from 'lucide-react';
+import { Check, User, MapPin, Smile } from 'lucide-react';
 
 export default function HomeScreen() {
-    const setCurrentScreen = useAppStore((state) => state.setCurrentScreen);
     const isCheckedIn = useAppStore((state) => state.isCheckedIn);
     const checkIn = useAppStore((state) => state.checkIn);
     const groupMembers = useAppStore((state) => state.groupMembers);
     const userLocation = useAppStore((state) => state.userLocation);
     const setUserLocation = useAppStore((state) => state.setUserLocation);
+    const setActiveTab = useAppStore((state) => state.setActiveTab);
 
     useEffect(() => {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    // For demo simplicity, we just use lat/lng. 
-                    // In a real app, we'd use a geocoding API to get the address.
-                    // Here we'll just mock a simplified address based on coordinates or random.
                     const { latitude, longitude } = position.coords;
                     setUserLocation({
                         lat: latitude,
                         lng: longitude,
-                        address: 'Seoul, Gangnam-gu' // Mock address for MVP
+                        address: 'Seoul, Gangnam-gu'
                     });
                 },
-                (error) => {
-                    console.error('Error getting location:', error);
-                }
+                (error) => { console.error('Error getting location:', error); }
             );
         }
     }, [setUserLocation]);
 
     const handleCheckIn = () => {
         checkIn();
-        // Simulate incoming call after 3 seconds of checking in
-        setTimeout(() => {
-            setCurrentScreen('call');
-        }, 3000);
     };
 
     return (
-        <div className="flex flex-col h-screen bg-gray-50 relative overflow-hidden">
+        <div className="h-full bg-toss-grey-50 overflow-y-auto hide-scrollbar pb-24 relative">
             {/* Header */}
-            <header className="bg-white p-4 pt-12 shadow-sm flex items-center justify-between z-10">
+            <header className="px-6 pt-14 pb-6 flex items-center justify-between sticky top-0 bg-white/80 backdrop-blur-md z-10 transition-all">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-800">Sunny Days ☀️</h1>
-                    <p className="text-sm text-gray-500">
-                        {userLocation ? `📍 ${userLocation.address}` : 'Finding location...'}
-                    </p>
+                    <motion.h1
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="text-[26px] font-bold text-gray-900 leading-tight"
+                    >
+                        Sunny Days <span className="text-2xl">☀️</span>
+                    </motion.h1>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="flex items-center gap-1 mt-1"
+                    >
+                        <MapPin size={14} className="text-gray-400" />
+                        <p className="text-[15px] text-gray-500 font-medium">
+                            {userLocation ? userLocation.address : 'Locating...'}
+                        </p>
+                    </motion.div>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                    <User className="text-[#2884C1] w-8 h-8" />
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                    {/* Avatar */}
+                    <span className="text-xl">👤</span>
                 </div>
             </header>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col items-center justify-center space-y-8 p-6">
+            <div className="px-5 space-y-6">
 
-                {/* Check-in Button (Hero) */}
-                <div className="relative">
+                {/* Hero / Check-in Card */}
+                <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center relative overflow-hidden">
                     {!isCheckedIn && (
                         <motion.div
-                            className="absolute inset-0 bg-blue-300 rounded-full opacity-30"
-                            animate={{ scale: [1, 1.5, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            className="absolute inset-0 bg-blue-50 opacity-50"
+                            animate={{ opacity: [0.3, 0.6, 0.3] }}
+                            transition={{ duration: 3, repeat: Infinity }}
                         />
                     )}
 
-                    <motion.button
-                        onClick={handleCheckIn}
-                        disabled={isCheckedIn}
-                        whileTap={{ scale: 0.95 }}
-                        className={`relative w-48 h-48 rounded-full flex flex-col items-center justify-center shadow-2xl transition-all ${isCheckedIn ? 'bg-green-500' : 'bg-[#2884C1]'
-                            }`}
+                    <motion.div
+                        className="relative z-10"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
                     >
-                        {isCheckedIn ? (
-                            <>
-                                <motion.div
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                >
-                                    <Check className="w-20 h-20 text-white mb-2" />
-                                    <span className="text-white font-bold text-2xl">Checked-in!</span>
+                        <h2 className="text-[22px] font-bold text-gray-900 mb-2">
+                            {isCheckedIn ? "You're all set!" : "How are you today?"}
+                        </h2>
+                        <p className="text-gray-500 text-[15px] mb-8">
+                            {isCheckedIn ? "Waiting for others to join..." : "Check-in to let your group know."}
+                        </p>
+
+                        <motion.button
+                            onClick={handleCheckIn}
+                            disabled={isCheckedIn}
+                            whileTap={{ scale: 0.95 }}
+                            whileHover={{ scale: 1.05 }}
+                            className={`w-28 h-28 rounded-3xl flex items-center justify-center shadow-lg transition-all duration-500 ${isCheckedIn
+                                    ? 'bg-green-500 text-white shadow-green-200'
+                                    : 'bg-toss-blue text-white shadow-blue-200'
+                                }`}
+                        >
+                            {isCheckedIn ? (
+                                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                                    <Check size={48} strokeWidth={3} />
                                 </motion.div>
-                                {/* Confetti Effect would go here */}
-                            </>
-                        ) : (
-                            <>
-                                <span className="text-5xl mb-3">👋</span>
-                                <span className="text-white font-bold text-2xl">I&apos;m Good!</span>
-                                <span className="text-blue-100 text-base mt-2">Tap to check-in</span>
-                            </>
+                            ) : (
+                                <Smile size={48} strokeWidth={2} />
+                            )}
+                        </motion.button>
+
+                        {!isCheckedIn && (
+                            <p className="text-toss-blue text-sm font-semibold mt-4 animate-pulse">
+                                Tap to Check-in
+                            </p>
                         )}
-                    </motion.button>
+                    </motion.div>
                 </div>
 
-                {/* Status List */}
-                <div className="w-full max-w-xs bg-white rounded-2xl p-4 shadow-sm space-y-3">
-                    <h3 className="text-base font-semibold text-gray-500 mb-2">Group Status</h3>
-                    {groupMembers.map((member, idx) => (
-                        <div key={member.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-2xl">
-                                    {idx === 0 ? '👴🏻' : '👵🏻'}
+                {/* Group Status */}
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 px-1">Group Members</h3>
+                    <div className="space-y-3">
+                        {groupMembers.map((member, idx) => (
+                            <motion.div
+                                key={member.id}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex items-center justify-between"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className="relative">
+                                        <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-2xl">
+                                            {idx === 0 ? '👴🏻' : '👵🏻'}
+                                        </div>
+                                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center">
+                                            <div className="w-3 h-3 bg-green-500 rounded-full border border-white" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-lg text-gray-900">{member.name}</p>
+                                        <p className="text-sm text-gray-400 font-medium">Online • {member.lastActive}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="font-bold text-lg text-gray-800">{member.name}</p>
-                                    <p className="text-sm text-green-600 flex items-center gap-1">
-                                        <span className="w-2 h-2 rounded-full bg-green-500" />
-                                        Online
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="text-right">
-                                <span className="text-sm text-gray-400 block">{member.lastActive}</span>
-                                <Check className="w-5 h-5 text-green-500 ml-auto" />
-                            </div>
-                        </div>
-                    ))}
+                                <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
+                                    <Check size={20} />
+                                </button>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
-
             </div>
 
-            {/* Toast Notification (Simulated Incoming Call) */}
+            {/* Notification Toast for Call */}
             {isCheckedIn && (
                 <motion.div
-                    initial={{ y: 100 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 2.5 }}
-                    className="absolute bottom-6 left-6 right-6 bg-[#2884C1] text-white p-5 rounded-2xl shadow-2xl flex items-center justify-between z-50"
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
+                    className="fixed bottom-24 left-4 right-4 z-20"
                 >
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center animate-pulse">
-                            <span className="text-2xl">📞</span>
+                    <div className="glass-panel p-5 rounded-[24px] flex items-center justify-between cursor-pointer" onClick={() => setActiveTab('call')}>
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white animate-pulse">
+                                <span className="text-xl">📞</span>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-900">Group Call Active</p>
+                                <p className="text-sm text-gray-500">Tap to join conversation</p>
+                            </div>
                         </div>
-                        <div>
-                            <p className="font-bold text-xl">Group Call Started</p>
-                            <p className="text-sm text-blue-100">Connecting...</p>
+                        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                            <span className="text-gray-400">→</span>
                         </div>
                     </div>
                 </motion.div>
             )}
-
         </div>
     );
 }

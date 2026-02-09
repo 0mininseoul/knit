@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useAppStore } from '@/store/useAppStore';
-import { User, Users } from 'lucide-react';
+import { User, Users, MapPin } from 'lucide-react';
 
 export default function MatchResultScreen() {
     const setCurrentScreen = useAppStore((state) => state.setCurrentScreen);
@@ -10,7 +10,7 @@ export default function MatchResultScreen() {
     const userProfile = useAppStore((state) => state.userProfile);
 
     return (
-        <div className="flex flex-col items-center justify-between h-screen bg-white p-6 pt-12 pb-8">
+        <div className="flex flex-col items-center min-h-screen bg-white p-6 pt-12 pb-8 overflow-y-auto space-y-8">
 
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
@@ -97,6 +97,42 @@ export default function MatchResultScreen() {
                     />
                 </svg>
             </div>
+
+            {/* Meeting Point Section */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                className="w-full max-w-xs bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+            >
+                <div className="p-4 bg-gray-50 border-b border-gray-100 flex items-center gap-3">
+                    <div className="bg-red-100 p-2 rounded-full">
+                        <MapPin className="w-5 h-5 text-red-500" />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-gray-800 text-sm">Meeting Point</h3>
+                        <p className="text-xs text-gray-500 font-medium">Tokyo Innovation Base</p>
+                    </div>
+                </div>
+
+                <div className="w-full h-48 bg-gray-200">
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        referrerPolicy="no-referrer-when-downgrade"
+                        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC7czVqz95lb8o6o6t_77j4AN9ElQ2-RcU&q=Tokyo+Innovation+Base,3+Chome-8-3+Marunouchi,+Chiyoda+City,+Tokyo`}
+                    ></iframe>
+                </div>
+
+                <div className="p-4 bg-white">
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                        3 Chome-8-3 Marunouchi, Chiyoda City, Tokyo 100-0005
+                    </p>
+                </div>
+            </motion.div>
 
             <motion.button
                 initial={{ y: 20, opacity: 0 }}
