@@ -49,16 +49,16 @@ export default function OnboardingScreen() {
     }, [step, setCurrentScreen, updateUserProfile]);
 
     return (
-        <div className="flex flex-col items-center justify-between h-screen bg-white p-6 relative overflow-hidden">
+        <div className="flex flex-col items-center justify-between h-screen bg-white px-6 py-24 relative overflow-hidden">
             {/* Top Graphic */}
-            <div className="w-full flex justify-center mt-12">
+            <div className="w-full flex justify-center">
                 <div className="w-40 h-40 rounded-full bg-blue-50 flex items-center justify-center border-4 border-[#2884C1]/10 p-2 overflow-hidden">
-                    <img src="/logo.png" alt="KNIT Logo" className="w-full h-full object-contain scale-125" />
+                    <img src="/knit_logo.png" alt="KNIT Logo" className="w-full h-full object-contain scale-125" />
                 </div>
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 flex flex-col items-center justify-center w-full max-w-xs text-center space-y-8">
+            <div className="flex-1 flex flex-col items-center justify-center w-full max-w-xs text-center space-y-5">
 
                 {/* State: AI Speaking */}
                 {step === 0 && (

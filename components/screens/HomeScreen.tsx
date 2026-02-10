@@ -19,13 +19,28 @@ export default function HomeScreen() {
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     setUserLocation({
-                        lat: latitude,
-                        lng: longitude,
-                        address: 'Seoul, Gangnam-gu'
+                        lat: 35.6812, // Tokyo Station area approx
+                        lng: 139.7671,
+                        address: 'Tokyo Innovation Base'
                     });
                 },
-                (error) => { console.error('Error getting location:', error); }
+                (error) => {
+                    // Fallback if permission denied or error
+                    setUserLocation({
+                        lat: 35.6812,
+                        lng: 139.7671,
+                        address: 'Tokyo Innovation Base'
+                    });
+                    console.error('Error getting location:', error);
+                }
             );
+        } else {
+            // Fallback if geolocation not supported
+            setUserLocation({
+                lat: 35.6812,
+                lng: 139.7671,
+                address: 'Tokyo Innovation Base'
+            });
         }
     }, [setUserLocation]);
 
@@ -59,7 +74,7 @@ export default function HomeScreen() {
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center overflow-hidden border border-gray-100 p-1">
-                        <img src="/logo.png" alt="KNIT Logo" className="w-full h-full object-contain scale-110" />
+                        <img src="/knit_logo.png" alt="KNIT Logo" className="w-full h-full object-contain scale-110" />
                     </div>
                     <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
                         {/* Avatar */}
@@ -82,7 +97,7 @@ export default function HomeScreen() {
                     )}
 
                     <motion.div
-                        className="relative z-10"
+                        className="relative z-10 flex flex-col items-center justify-center"
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                     >
@@ -161,9 +176,9 @@ export default function HomeScreen() {
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
-                    className="fixed bottom-24 left-4 right-4 z-20"
+                    className="fixed bottom-24 left-0 right-0 z-20 flex justify-center pointer-events-none"
                 >
-                    <div className="glass-panel p-5 rounded-[24px] flex items-center justify-between cursor-pointer" onClick={() => setActiveTab('call')}>
+                    <div className="glass-panel p-5 rounded-[24px] flex items-center justify-between cursor-pointer pointer-events-auto w-[calc(100%-32px)] max-w-sm" onClick={() => setActiveTab('call')}>
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white animate-pulse">
                                 <span className="text-xl">📞</span>

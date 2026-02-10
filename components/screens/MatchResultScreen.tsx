@@ -82,10 +82,10 @@ export default function MatchResultScreen() {
 
                     {/* Main User (Top) */}
                     <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
+                        initial={{ scale: 0, opacity: 0, x: "-50%" }}
+                        animate={{ scale: 1, opacity: 1, x: "-50%" }}
                         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                        className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center"
+                        className="absolute top-0 left-1/2 flex flex-col items-center"
                     >
                         <div className="w-[72px] h-[72px] rounded-full bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.08)] flex items-center justify-center relative p-1">
                             <div className="w-full h-full rounded-full bg-blue-50 flex items-center justify-center overflow-hidden">
