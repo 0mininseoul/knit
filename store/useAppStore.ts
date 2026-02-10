@@ -34,6 +34,9 @@ interface AppState {
 
   userLocation: { lat: number; lng: number; address?: string } | null;
   setUserLocation: (location: { lat: number; lng: number; address?: string }) => void;
+
+  fontSizeLevel: number;
+  setFontSizeLevel: (level: number) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -75,4 +78,8 @@ export const useAppStore = create<AppState>((set) => ({
 
   userLocation: null,
   setUserLocation: (location) => set({ userLocation: location }),
+
+  // Font Size
+  fontSizeLevel: 1, // Default to level 1 (Normal)
+  setFontSizeLevel: (level) => set({ fontSizeLevel: level }),
 }));

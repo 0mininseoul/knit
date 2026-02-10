@@ -3,6 +3,7 @@
 import React from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import { ChevronRight, Bell, Lock, HelpCircle, LogOut } from 'lucide-react';
+import FontSizeSlider from '@/components/ui/FontSizeSlider';
 
 export default function SettingsScreen() {
     const { userProfile } = useAppStore();
@@ -48,6 +49,12 @@ export default function SettingsScreen() {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Display Settings - Font Size */}
+                <div className="mt-6 bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Display</h3>
+                    <FontSizeSlider />
                 </div>
 
                 {/* Logout Button */}

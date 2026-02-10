@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Connecting knitted hearts",
 };
 
+import FontSizeManager from "@/components/ui/FontSizeManager";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -17,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-gray-100 min-h-screen flex justify-center items-center`}>
+        <FontSizeManager />
         <div className="w-full max-w-[430px] min-h-screen bg-white shadow-2xl overflow-hidden relative">
           {children}
         </div>
